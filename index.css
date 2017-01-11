@@ -1,17 +1,32 @@
-body {
+/*body {
   overflow: hidden;
   position: absolute;
   height: 100%;
   width: 100%;
   background-color: lightblue;
+}*/
+body {
+  /*background-image: url("NamekBackground.bmp");
+  background-position: top;
+  position: absolute;
+  align-items: center;*/
+  height: 100%;
+  width: 100%;
+  background: url('NamekBackground.bmp');
+  /*background-repeat: no-repeat;*/
+  animation: play 13.8s steps(250) infinite;
+  overflow: hidden;
+}
+@keyframes play {
+  100% { background-position: -2560px 0px; }
 }
 
 #birdy {
   position: absolute;
   top: 45%;
   left: 45%;
-  width: 92px;
-  height: 64px;
+  width: 100px;
+  height: 120px;
   overflow: hidden;
 }
 

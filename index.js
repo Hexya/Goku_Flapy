@@ -2,7 +2,7 @@ var birdy           = document.getElementById('birdy');
 
 //--------------------- CREATE ANIMATION ---------------------//
 var sprite          = document.getElementById('sprite');
-var spriteStepWidth = 92;
+var spriteStepWidth = 100;
 var spriteSteps     = 2;
 var step            = 0;
 
@@ -88,12 +88,53 @@ function animatePipes () {
     if (left < -pipeWidth) {
       updateHeight(pipe.children[0], pipe.children[1]);
       pipe.style.left = 100 + '%';
+      pipe.children[0].style.backgroundColor = "green";
+      pipe.children[1].style.backgroundColor = "green";
     }
-    
+    function touchPipe() {
+      var bec = birdy.offsetLeft + birdy.offsetWidth;
+      var queue = birdy.offsetLeft;
+      var patte = birdy.offsetTop + birdy.offsetHeight;
+      var tete = birdy.offsetTop;
+
+      var pipeLeft = pipe.offsetLeft;
+      var pipeRight = pipe.offsetLeft + pipe.offsetWidth;
+      var pipeUp = pipe.children[0].offsetTop + pipe.children[0].offsetHeight;
+      var pipeDown = pipe.children[1].offsetTop;
+
+      if(bec > pipeLeft && queue < pipeRight) {
+        if(patte > pipeDown) {
+          pipe.children[1].style.backgroundColor = "red";
+        console.log("DIE BITCH");
+      }
+        if(tete < pipeUp) {
+          pipe.children[0].style.backgroundColor = "red";
+        console.log("GAME OVER");
+      }
+      }
+    }
+    touchPipe(pipe);
   });
 
 }
+//-----------------------------------------------------------
+// COLISION
+//-----------------------------------------------------------
 
+
+
+// function animatePipe(){
+//   pipes.forEach(function(pipe){
+//     touchPipe(pipe);
+//   });
+// }
+//
+// function action() {
+//   animatePipe();
+// }
+//
+//
+// window.setInterval(action,80);
 //--------------------- GLOBAL -----------------//
 
 function animateScene () {
@@ -101,6 +142,7 @@ function animateScene () {
   animateFly();
   animatePipes();
 }
+
 
 //-----------------------------------------------------------
 // LAUNCH SCENE
